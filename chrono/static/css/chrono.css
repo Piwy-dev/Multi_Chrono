@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.chrono-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.chrono {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chrono h3 {
+    margin: 0 0 10px;
+}
+
+.chrono p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
