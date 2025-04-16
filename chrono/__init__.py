@@ -26,6 +26,7 @@ def create_app(test_config=None):
             seconds = int(seconds)
          except ValueError:
             return "Invalid input. Please provide valid integers for minutes and seconds.", 400
+         print(f"Minutes: {minutes}, Seconds: {seconds}")
          return render_template('minuteur.html', minutes=minutes, seconds=seconds)
       return render_template('minuteur.html')
    

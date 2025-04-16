@@ -4,37 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minuteur</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/chrono.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/minuteur.css') }}">
 </head>
 <body>
-    <div class="home-button-container">
-        <a href="{{ url_for('home') }}" class="home-button">Retour à l'accueil</a>
-    </div>
-    <h1>Minuteur</h1>
-    <form class="time-input-form" method="GET">
+    <a href="{{ url_for('home') }}" class="page-title">&#8592; Minuteur</a>
+
+    <form class="time-input-form" method="POST">
         <label for="minutes">Minutes:</label>
-        <input type="number" id="minutes" name="minutes" min="0" placeholder="0", required, max="59">
+        <input type="number" id="minutes" name="minutes" min="0" placeholder="0" required max="59" value="{{ request.form.get('minutes', '') }}">
         
         <label for="seconds">Secondes:</label>
-        <input type="number" id="seconds" name="seconds" min="0" placeholder="0", required, max="59">
+        <input type="number" id="seconds" name="seconds" min="0" placeholder="0" required max="59" value="{{ request.form.get('seconds', '') }}">
         
         <button type="submit">Définir</button>
     </form>
-    <div class="chrono-container">
-        <div class="chrono">
-            <h3>Team A</h3>
-            <p>00:12:34</p>
-            <button>Stop</button>
-        </div>
-        <div class="chrono">
-            <h3>Team B</h3>
-            <p>00:08:45</p>
-            <button>Stop</button>
+    <div class="teams-container">
+        {% for team in teams %}
+            <div class="team">
+                <h3>{{ team.name }}</h3>
+                <p id="time-{{ loop.index }}">{{ team.time }}</p>
+                <button class="stop-button" data-team-id="{{ loop.index }}">Stop</button>
+            </div>
+        {% endfor %}
+        <div class="add-team-container">
+            <button id="add-team-button">Ajouter une équipe</button>
         </div>
     </div>
-    <div class="add-team-container">
-        <button id="add-team-button">Ajouter une équipe</button>
-    </div>
+    
 </body>

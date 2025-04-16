@@ -18,22 +18,3 @@ body {
 .button:hover {
     background-color: #0056b3;
 }
-
-.home-button-container {
-    margin-top: 30px;
-    text-align: center;
-}
-.home-button-container .home-button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #28a745;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-}
-.home-button-container .home-button:hover {
-    background-color: #218838;
-}
