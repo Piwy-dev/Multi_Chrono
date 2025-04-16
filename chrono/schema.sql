@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS teams (
+    name TEXT NOT NULL PRIMARY KEY UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS timer (
+    minutes INTEGER NOT NULL,
+    seconds INTEGER NOT NULL
+);
+
+
+

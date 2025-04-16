@@ -17,16 +17,5 @@
         
         <button type="submit">Ajouter</button>
     </form>
-    <script src="/static/scripts.js"></script>
-    <script>
-        document.getElementById('add-team-button').addEventListener('click', function() {
-            document.querySelector('.add-team-container').style.display = 'block';
-        }); 
-        document.querySelector('.stop-button').addEventListener('click', function() {
-            const teamId = this.getAttribute('data-team-id');
-            document.getElementById(`time-${teamId}`).innerText = '00:00';
-        });
-    </script>
-
 </body>
 </html>

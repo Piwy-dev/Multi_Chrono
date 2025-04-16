@@ -1,19 +1,36 @@
-from flask import Flask, render_template, request
+from flask import *
 import os
+import chrono.database as db
+import chrono.teams as tms
+
       
 def create_app(test_config=None):
    """Create and configure the app."""
    app = Flask(__name__, template_folder='templates', static_folder='static')
    app.config.from_mapping(
       SECRET_KEY='dev',
+      DATABASE=os.path.join(app.instance_path, 'db.sqlite'),
    )
+   
+   # ensure the instance folder exists
+   try:
+      os.makedirs(app.instance_path)
+   except OSError:
+      pass
+
+   # register the database commands
+   db.init_app(app)
+
+   with app.app_context():
+      db.init_db()
+      tms.delete_all_teams()
    
    @app.route('/')
    def home():
       return render_template('home.html')
    
    @app.route('/chronometre')
-   def chronos():
+   def chronometre():
       return render_template('chronometre.html')
    
    @app.route('/minuteur', methods=['GET', 'POST'])
@@ -26,9 +43,10 @@ def create_app(test_config=None):
             seconds = int(seconds)
          except ValueError:
             return "Invalid input. Please provide valid integers for minutes and seconds.", 400
-         print(f"Minutes: {minutes}, Seconds: {seconds}")
-         return render_template('minuteur.html', minutes=minutes, seconds=seconds)
-      return render_template('minuteur.html')
+         teams = tms.get_all_teams()
+         return render_template('minuteur.html', minutes=minutes, seconds=seconds, teams=teams)
+      teams = tms.get_all_teams()
+      return render_template('minuteur.html', teams=teams)
    
    @app.route('/add-team', methods=['GET', 'POST'])
    def add_team():
@@ -36,8 +54,9 @@ def create_app(test_config=None):
       if request.method == 'POST':
          team_name = request.form.get('team_name')
          if team_name:
-            print(f"Team added: {team_name}")
-            return f"Team {team_name} added successfully!"
+            tms.add_team_to_database(team_name) 
+            teams = tms.get_all_teams()
+            return redirect('/minuteur')
          else:
             return "Please provide a valid team name.", 400
       return render_template('add-team.html')
