@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/chrono.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/minuteur.css') }}">
+    <script src="{{ url_for('static', filename='js/minuteur.js') }}" defer></script>
 </head>
 <body>
     <a href="{{ url_for('home') }}" class="back-button">&#8592; Retour</a>
@@ -23,8 +24,8 @@
     <div class="teams-container">
         {% for team in teams %}
             <div class="team">
-                <h3>{{ team.name }}</h3>
-                <p id="time-{{ loop.index }}">{{ team.time }}</p>
+                <h3>{{ team.team_name }}</h3>
+                <p id="time-{{ loop.index }}">{{ team.initial_minutes }}:{{ team.initial_seconds }}</p>
                 <button class="stop-button" data-team-id="{{ loop.index }}">Stop</button>
                 <button class="reset-button" data-team-id="{{ loop.index }}">Réinitialiser</button>
             </div>
@@ -33,5 +34,4 @@
             <a href="{{ url_for('add_team') }}" id="add-team-button">Ajouter une équipe</a>
         </div>
     </div>
-    
 </body>

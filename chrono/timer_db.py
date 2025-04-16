@@ -29,3 +29,11 @@ def get_timer():
     else:
         return 0, 0
     
+def delete_timer():
+    """
+    Delete the current timer.
+    """
+    db = database.get_db()
+    db.execute("DELETE FROM timer")
+    db.commit()
+    

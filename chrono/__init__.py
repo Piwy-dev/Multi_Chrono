@@ -25,6 +25,7 @@ def create_app(test_config=None):
    with app.app_context():
       db.init_db()
       tms.delete_all_teams()
+      timer_db.delete_timer()
    
    @app.route('/')
    def home():
@@ -61,7 +62,8 @@ def create_app(test_config=None):
       if request.method == 'POST':
          team_name = request.form.get('team_name')
          if team_name:
-            tms.add_team_to_database(team_name) 
+            initial_minutes, initial_seconds = timer_db.get_timer()
+            tms.add_team_to_database(initial_minutes, initial_seconds, team_name)
             return redirect('/minuteur')
          else:
             return "Please provide a valid team name.", 400
