@@ -2,15 +2,17 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center; /* Ajouté pour centrer horizontalement */
     gap: 15px;
-    padding: 10px;
+    padding: 7px;
     border: 2px solid #007BFF;
     border-radius: 10px;
-    background-color: #f8f9fa;
+    background-color: #e4f0fb;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 100%;
+    max-width: 40%;
     margin: 20px auto;
 }
+
 
 .time-input-form label {
     font-size: 1rem;
@@ -19,13 +21,14 @@
 }
 
 .time-input-form input {
-    width: auto;
-    padding: 10px;
+    width: 75px;
+    padding: 5px;
     font-size: 1rem;
-    border: 2px solid #007BFF;
+    border: none;
     border-radius: 5px;
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: textfield;
 }
 
 .time-input-form input:focus {
@@ -48,8 +51,4 @@
 .time-input-form button:hover {
     background-color: #0056b3;
     transform: scale(1.05);
-}
-
-.time-input-form button:active {
-    background-color: #003f7f;
 }
