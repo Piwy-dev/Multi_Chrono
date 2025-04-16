@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une Équipe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add-team.css') }}">
+</head>
+<body>
+    <a href="{{ url_for('minuteur') }}" class="back-button">&#8592; Retour</a>
+
+    <form action="/add-team" method="POST"
+        enctype="multipart/form-data">
+        <label for="team_name">Nom de l'équipe:</label>
+        <input type="text" id="team_name" name="team_name" required>
+        
+        <button type="submit">Ajouter</button>
+    </form>
+    <script src="/static/scripts.js"></script>
+    <script>
+        document.getElementById('add-team-button').addEventListener('click', function() {
+            document.querySelector('.add-team-container').style.display = 'block';
+        }); 
+        document.querySelector('.stop-button').addEventListener('click', function() {
+            const teamId = this.getAttribute('data-team-id');
+            document.getElementById(`time-${teamId}`).innerText = '00:00';
+        });
+    </script>
+
+</body>
+</html>

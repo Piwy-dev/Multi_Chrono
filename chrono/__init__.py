@@ -30,4 +30,16 @@ def create_app(test_config=None):
          return render_template('minuteur.html', minutes=minutes, seconds=seconds)
       return render_template('minuteur.html')
    
+   @app.route('/add-team', methods=['GET', 'POST'])
+   def add_team():
+      print(request.method)
+      if request.method == 'POST':
+         team_name = request.form.get('team_name')
+         if team_name:
+            print(f"Team added: {team_name}")
+            return f"Team {team_name} added successfully!"
+         else:
+            return "Please provide a valid team name.", 400
+      return render_template('add-team.html')
+   
    return app

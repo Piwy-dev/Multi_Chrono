@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/minuteur.css') }}">
 </head>
 <body>
-    <a href="{{ url_for('home') }}" class="page-title">&#8592; Minuteur</a>
+    <a href="{{ url_for('home') }}" class="back-button">&#8592; Retour</a>
 
     <form class="time-input-form" method="POST">
         <label for="minutes">Minutes:</label>
@@ -29,7 +29,7 @@
             </div>
         {% endfor %}
         <div class="add-team-container">
-            <button id="add-team-button">Ajouter une équipe</button>
+            <a href="{{ url_for('add_team') }}" id="add-team-button">Ajouter une équipe</a>
         </div>
     </div>
     

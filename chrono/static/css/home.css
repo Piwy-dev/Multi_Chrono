@@ -3,6 +3,7 @@ body {
     text-align: center;
     margin-top: 50px;
 }
+
 .button {
     display: inline-block;
     margin: 20px;
@@ -15,6 +16,7 @@ body {
     cursor: pointer;
     text-decoration: none;
 }
+
 .button:hover {
     background-color: #0056b3;
 }
