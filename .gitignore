@@ -1,0 +1,28 @@
+# Python cache files
+*.pyc
+*.pyo
+__pycache__/
+
+# Environment variables
+.env
+*.env
+
+# Flask instance and config files
+instance/
+config.py
+
+# Virtual environment
+venv/
+ENV/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# Database files
+*.sqlite3
+*.db
