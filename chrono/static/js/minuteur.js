@@ -1,10 +1,12 @@
 function updateTimerDisplay(timerText, totalSeconds) {
-    const mins = Math.floor(totalSeconds / 60);
-    const secs = totalSeconds % 60;
+    const mins = Math.floor(Math.abs(totalSeconds) / 60);
+    const secs = Math.abs(totalSeconds) % 60;
 
-    timerText.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-    if (totalSeconds <= 0) {
-        timerText.color = 'red';
+    timerText.textContent = `${totalSeconds < 0 ? '-' : ''}${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    if (totalSeconds < 0) {
+        timerText.style.color = 'red';
+    } else {
+        timerText.style.color = '';
     }
 }
 
@@ -12,10 +14,6 @@ function startTimer(minutes, seconds, timerTextId) {
     let totalSeconds = minutes * 6 + seconds;
 
     const interval = setInterval(() => {
-        if (totalSeconds <= 0) {
-            clearInterval(interval);
-            return;
-        }
         totalSeconds--;
         updateTimerDisplay(document.getElementById(timerTextId), totalSeconds);
     }, 1000);
