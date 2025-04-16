@@ -2,6 +2,7 @@ from flask import *
 import os
 import chrono.database as db
 import chrono.teams as tms
+import chrono.timer_db as timer_db
 
       
 def create_app(test_config=None):
@@ -41,12 +42,18 @@ def create_app(test_config=None):
          try:
             minutes = int(minutes)
             seconds = int(seconds)
+            timer_db.set_timer(minutes, seconds)
          except ValueError:
             return "Invalid input. Please provide valid integers for minutes and seconds.", 400
          teams = tms.get_all_teams()
+         print (teams)
          return render_template('minuteur.html', minutes=minutes, seconds=seconds, teams=teams)
-      teams = tms.get_all_teams()
-      return render_template('minuteur.html', teams=teams)
+      elif request.method == 'GET':
+         minutes, seconds = timer_db.get_timer()
+         teams = tms.get_all_teams()
+         print (teams)
+         print (minutes, seconds)
+         return render_template('minuteur.html', minutes=minutes, seconds=seconds, teams=teams)
    
    @app.route('/add-team', methods=['GET', 'POST'])
    def add_team():
@@ -55,7 +62,6 @@ def create_app(test_config=None):
          team_name = request.form.get('team_name')
          if team_name:
             tms.add_team_to_database(team_name) 
-            teams = tms.get_all_teams()
             return redirect('/minuteur')
          else:
             return "Please provide a valid team name.", 400

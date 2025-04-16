@@ -13,10 +13,10 @@
 
     <form class="time-input-form" method="POST">
         <label for="minutes">Minutes:</label>
-        <input type="number" id="minutes" name="minutes" min="0" placeholder="0" required max="59" value="{{ request.form.get('minutes', '') }}">
+        <input type="number" id="minutes" name="minutes" min="0" placeholder="0" required max="59" value="{{ minutes }}">
         
         <label for="seconds">Secondes:</label>
-        <input type="number" id="seconds" name="seconds" min="0" placeholder="0" required max="59" value="{{ request.form.get('seconds', '') }}">
+        <input type="number" id="seconds" name="seconds" min="0" placeholder="0" required max="59" value="{{ seconds }}">
         
         <button type="submit">Définir</button>
     </form>
