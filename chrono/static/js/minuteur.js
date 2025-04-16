@@ -1,11 +1,15 @@
-function startCountdown(minutes, seconds, displayElement) {
-    let totalSeconds = minutes * 60 + seconds;
+function updateTimerDisplay(timerText, totalSeconds) {
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = totalSeconds % 60;
 
-    function updateDisplay() {
-        const mins = Math.floor(totalSeconds / 60);
-        const secs = totalSeconds % 60;
-        displayElement.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    timerText.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    if (totalSeconds <= 0) {
+        timerText.color = 'red';
     }
+}
+
+function startTimer(minutes, seconds, timerTextId) {
+    let totalSeconds = minutes * 6 + seconds;
 
     const interval = setInterval(() => {
         if (totalSeconds <= 0) {
@@ -13,22 +17,8 @@ function startCountdown(minutes, seconds, displayElement) {
             return;
         }
         totalSeconds--;
-        updateDisplay();
+        updateTimerDisplay(document.getElementById(timerTextId), totalSeconds);
     }, 1000);
 
-    updateDisplay(); // Initialize display
+    updateTimerDisplay(document.getElementById(timerTextId), totalSeconds);
 }
-
-function startCountdowns() {
-    const countdowns = document.querySelectorAll('.countdown');
-    countdowns.forEach(countdown => {
-        const minutes = parseInt(countdown.dataset.minutes, 10);
-        const seconds = parseInt(countdown.dataset.seconds, 10);
-        startCountdown(minutes, seconds, countdown);
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    startCountdowns();
-}
-);
