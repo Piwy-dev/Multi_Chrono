@@ -25,9 +25,13 @@
         {% for team in teams %}
             <div class="team">
                 <h3>{{ team.team_name }}</h3>
-                <p id="time-{{ loop.index }}">{{ team.initial_minutes }}:{{ team.initial_seconds }}</p>
-                <button class="stop-button" data-team-id="{{ loop.index }}">Stop</button>
-                <button class="reset-button" data-team-id="{{ loop.index }}">Réinitialiser</button>
+                <p id="timer-{{ team.team_name }}">{{ team.initial_minutes }}:{{ team.initial_seconds }}</p>
+                {% if team.started == 0 %}
+                    <button class="begin-button" id="{{ team.team_name }}" onclick="startTimer('{{ team.initial_minutes }} ', '{{ team.initial_seconds}}', 'timer-{{team.team_name}}')">Commencer</button>
+                {% else %}
+                    <button class="stop-button" data-team-id="{{ team.team_name }}">Stop</button>
+                    <button class="reset-button" data-team-id="{{ team.team_name }}">Réinitialiser</button>
+                {% endif %}
             </div>
         {% endfor %}
         <div class="add-team-container">

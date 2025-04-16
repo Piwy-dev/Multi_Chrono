@@ -62,6 +62,21 @@
     background-color: #e0a800;
 }
 
+.begin-button {
+    padding: 8px 16px;
+    font-size: 15px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.begin-button:hover {
+    background-color: #218838;
+}
+
 .add-team-container {
     margin-top: 15px;
 }
