@@ -13,10 +13,16 @@ function updateTimerDisplay(timerText, totalSeconds) {
 function startTimer(minutes, seconds, teamId) {
     let totalSeconds = minutes * 6 + seconds;
 
-    const interval = setInterval(() => {
+    let interval = setInterval(() => {
         totalSeconds--;
         updateTimerDisplay(document.getElementById('timer-' + teamId), totalSeconds);
     }, 1000);
+
+    // Store the interval in a global or team-specific variable to allow stopping or resetting
+    if (!window.timerIntervals) {
+        window.timerIntervals = {};
+    }
+    window.timerIntervals[teamId] = interval;
 
     updateTimerDisplay(document.getElementById('timer-' + teamId), totalSeconds);
 
@@ -70,4 +76,12 @@ function resetTimer(minutes, seconds, teamId) {
     const timerText = document.getElementById('timer-' + teamId);
     const totalSeconds = minutes * 6 + seconds;
     updateTimerDisplay(timerText, totalSeconds);
+    timerText.style.color = '';
+
+    // Clear the interval if it exists
+    if (window.timerIntervals && window.timerIntervals[teamId]) {
+        clearInterval(window.timerIntervals[teamId]);
+        delete window.timerIntervals[teamId];
+    }
+
 }
