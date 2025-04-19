@@ -42,6 +42,11 @@ function startTimer(minutes, seconds, teamId) {
     const resetButton = document.getElementById('reset-' + teamId);
     resetButton.disabled = false;
     resetButton.style.display = 'inline-block';
+
+    // Disable the restart button
+    const restartButton = document.getElementById('restart-' + teamId);
+    restartButton.disabled = true;
+    restartButton.style.display = 'none';
 }
 
 function stopTimer(teamId) {
@@ -51,9 +56,20 @@ function stopTimer(teamId) {
     stopButton.style.display = 'none';
 
     // Enable the start button
-    const startButton = document.getElementById('start-' + teamId);
+    const startButton = document.getElementById('restart-' + teamId);
     startButton.disabled = false;
-    startButton.style.display = 'inline-block'; 
+    startButton.style.display = 'inline-block';
+    
+    // Disable the reset button
+    const resetButton = document.getElementById('reset-' + teamId);
+    resetButton.disabled = false;
+    resetButton.style.display = 'inline-block';
+
+    // Clear the interval if it exists
+    if (window.timerIntervals && window.timerIntervals[teamId]) {
+        clearInterval(window.timerIntervals[teamId]);
+        delete window.timerIntervals[teamId];
+    }
 }
 
 function resetTimer(minutes, seconds, teamId) {
@@ -83,5 +99,18 @@ function resetTimer(minutes, seconds, teamId) {
         clearInterval(window.timerIntervals[teamId]);
         delete window.timerIntervals[teamId];
     }
+}
 
+function restartTimer(teamId) {
+    // Get the values from the timer display
+    const timerText = document.getElementById('timer-' + teamId);
+    const timeParts = timerText.textContent.split(':');
+    const minutes = parseInt(timeParts[0], 10);
+    const seconds = parseInt(timeParts[1], 10);
+    const totalSeconds = Math.abs(minutes * 60 + seconds);
+    const newMinutes = Math.floor(totalSeconds / 6);
+    const newSeconds = totalSeconds % 6;
+
+    // Restart the timer
+    startTimer(newMinutes, newSeconds, teamId);
 }
