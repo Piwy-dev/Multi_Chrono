@@ -30,10 +30,44 @@ function startTimer(minutes, seconds, teamId) {
     // Enable the stop button
     const stopButton = document.getElementById('stop-' + teamId);
     stopButton.disabled = false;
-    stopButton.style.display = 'block';
+    stopButton.style.display = 'inline-block';
     
     // Enable the reset button
     const resetButton = document.getElementById('reset-' + teamId);
     resetButton.disabled = false;
-    resetButton.style.display = 'block';
+    resetButton.style.display = 'inline-block';
+}
+
+function stopTimer(teamId) {
+    // Disable the stop button
+    const stopButton = document.getElementById('stop-' + teamId);
+    stopButton.disabled = true;
+    stopButton.style.display = 'none';
+
+    // Enable the start button
+    const startButton = document.getElementById('start-' + teamId);
+    startButton.disabled = false;
+    startButton.style.display = 'inline-block'; 
+}
+
+function resetTimer(minutes, seconds, teamId) {
+    // Disable the reset button
+    const resetButton = document.getElementById('reset-' + teamId);
+    resetButton.disabled = true;
+    resetButton.style.display = 'none';
+
+    // Enable the start button
+    const startButton = document.getElementById('start-' + teamId);
+    startButton.disabled = false;
+    startButton.style.display = 'inline-block';
+
+    // Disable the stop button
+    const stopButton = document.getElementById('stop-' + teamId);   
+    stopButton.disabled = true;
+    stopButton.style.display = 'none';
+
+    // Reset the timer display
+    const timerText = document.getElementById('timer-' + teamId);
+    const totalSeconds = minutes * 6 + seconds;
+    updateTimerDisplay(timerText, totalSeconds);
 }

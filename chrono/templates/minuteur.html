@@ -27,8 +27,9 @@
                 <h3>{{ team.team_name }}</h3>
                 <p id="timer-{{ team.team_name }}">{{ team.initial_minutes }}:{{ team.initial_seconds }}</p>
                 <button class="begin-button" id="start-{{ team.team_name }}" onclick="startTimer('{{ team.initial_minutes }} ', '{{ team.initial_seconds}}', '{{team.team_name}}')">Commencer</button>
-                <button class="stop-button" id="stop-{{ team.team_name }}" style="display: none;">Stop</button>
+                <button class="stop-button" id="stop-{{ team.team_name }}" style="display: none;" onclick="stopTimer('{{team.team_name}}')">Stop</button>
                 <button class="reset-button" id="reset-{{ team.team_name }}" style="display: none;">Réinitialiser</button>
+                <button class="restart-button" id="restart-{{ team.team_name }}" onclick="restartTimer('{{ team.team_name }}')" style="display: none;">Reprendre</button>
             </div>
         {% endfor %}
         <div class="add-team-container">
