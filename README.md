@@ -13,15 +13,25 @@ Multi Chrono est une application permettant de gérer plusieurs chronomètres ou
 
 1. Clonez ce dépôt :
     ```bash
-    git clone https://github.com/votre-utilisateur/Multi_Chrono.git
+    HTTP : git clone https://github.com/Piwy-dev/Multi_Chrono.git
+    SSH : git clone git@github.com:Piwy-dev/Multi_Chrono.git
     ```
-2. Accédez au dossier du projet :
+2. Créer un environnement virtuel :
     ```bash
-    cd chrono
+    python -m venv .venv
     ```
-3. Installez les dépendances (si nécessaire) :
+3. Activez l'environnement virtuel :
+    - Sur Windows :
+        ```bash
+        .venv\Scripts\activate
+        ```
+    - Sur macOS et Linux :
+        ```bash
+        source .venv/bin/activate
+        ```
+4. Installez les dépendances :
     ```bash
-    npm install
+    pip install -r requirements.txt
     ```
 
 ## Utilisation
