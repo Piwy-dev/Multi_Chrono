@@ -21,7 +21,6 @@ def close_db(e=None):
     Close the database connection if it exists.
     """
     db = g.pop('db', None)
-
     if db is not None:
         db.close()
 
@@ -30,7 +29,6 @@ def init_db():
     """
     Initialize the database.
     """
-    # Create the database
     db = get_db()
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))

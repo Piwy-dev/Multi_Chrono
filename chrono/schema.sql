@@ -1,14 +1,13 @@
-CREATE TABLE IF NOT EXISTS timer(
+CREATE TABLE IF NOT EXISTS timerduration(
     minutes INTEGER NOT NULL,
     seconds INTEGER NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS teams (
-    initial_minutes INTEGER NOT NULL,
-    initial_seconds INTEGER NOT NULL,
+CREATE TABLE IF NOT EXISTS timer (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     team_name TEXT NOT NULL,
-    start_time TIMESTAMP NOT NULL,
-    started BOOLEAN NOT NULL
+    initial_minutes INTEGER NOT NULL,
+    initial_seconds INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS chrono ( 

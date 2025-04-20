@@ -1,8 +1,7 @@
 from flask import *
 import os
 import chrono.database as db
-import chrono.teams as tms
-import chrono.timer_db as timer_db
+import chrono.timer_db as tdb
 
       
 def create_app(test_config=None):
@@ -24,8 +23,8 @@ def create_app(test_config=None):
 
    with app.app_context():
       db.init_db()
-      tms.delete_all_teams()
-      timer_db.delete_timer()
+      tdb.delete_all_timers()
+      tdb.delete_timer_duration()
    
    @app.route('/')
    def home():
@@ -43,18 +42,15 @@ def create_app(test_config=None):
          try:
             minutes = int(minutes)
             seconds = int(seconds)
-            timer_db.set_timer(minutes, seconds)
+            tdb.set_timer_duration(minutes, seconds)
          except ValueError:
             return "Invalid input. Please provide valid integers for minutes and seconds.", 400
-         teams = tms.get_all_teams()
-         print (teams)
-         return render_template('minuteur.html', minutes=minutes, seconds=seconds, teams=teams)
+         timers = tdb.get_all_timers()
+         return render_template('minuteur.html', minutes=minutes, seconds=seconds, timers=timers)
       elif request.method == 'GET':
-         minutes, seconds = timer_db.get_timer()
-         teams = tms.get_all_teams()
-         print (teams)
-         print (minutes, seconds)
-         return render_template('minuteur.html', minutes=minutes, seconds=seconds, teams=teams)
+         minutes, seconds = tdb.get_timer_duration()
+         timers = tdb.get_all_timers()
+         return render_template('minuteur.html', minutes=minutes, seconds=seconds, timers=timers)
    
    @app.route('/add-team', methods=['GET', 'POST'])
    def add_team():
@@ -62,8 +58,8 @@ def create_app(test_config=None):
       if request.method == 'POST':
          team_name = request.form.get('team_name')
          if team_name:
-            initial_minutes, initial_seconds = timer_db.get_timer()
-            tms.add_team_to_database(initial_minutes, initial_seconds, team_name)
+            initial_minutes, initial_seconds = tdb.get_timer_duration()
+            tdb.add_timer(team_name, initial_minutes, initial_seconds)
             return redirect('/minuteur')
          else:
             return "Please provide a valid team name.", 400
