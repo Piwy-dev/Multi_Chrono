@@ -34,13 +34,12 @@ Multi Chrono est une application permettant de gérer plusieurs chronomètres ou
     pip install -r requirements.txt
     ```
 
-## Utilisation
-
-1. Lancez l'application :
+5. Lancez l'application :
     ```bash
-    npm start
+    flask --app=chrono run
     ```
-2. Suivez les instructions à l'écran pour ajouter et gérer vos chronomètres.
+
+6. Ouvrez votre navigateur et accédez à `http://127.0.0.1:5000`.
 
 ## Contribution
 
