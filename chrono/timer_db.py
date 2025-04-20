@@ -1,5 +1,4 @@
 from chrono import database
-import datetime
 
 def set_timer_duration(minutes, seconds):
     """

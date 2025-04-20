@@ -2,7 +2,7 @@ from flask import *
 import os
 import chrono.database as db
 import chrono.timer_db as tdb
-
+import chrono.chrono_db as cdb
       
 def create_app(test_config=None):
    """Create and configure the app."""
@@ -32,7 +32,8 @@ def create_app(test_config=None):
    
    @app.route('/chronometre')
    def chronometre():
-      return render_template('chronometre.html')
+      chronos = cdb.get_all_chronos()
+      return render_template('chronometre.html', chronos=chronos)
    
    @app.route('/minuteur', methods=['GET', 'POST'])
    def minuteur():
