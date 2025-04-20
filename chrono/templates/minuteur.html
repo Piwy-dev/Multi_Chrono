@@ -22,14 +22,14 @@
         <button type="submit">Définir</button>
     </form>
     <div class="teams-container">
-        {% for team in teams %}
+        {% for timer in timers %}
             <div class="team">
-                <h3>{{ team.team_name }}</h3>
-                <p id="timer-{{ team.team_name }}">{{ team.initial_minutes }}:{{ team.initial_seconds }}</p>
-                <button class="begin-button" id="start-{{ team.team_name }}" onclick="startTimer('{{ team.initial_minutes }} ', '{{ team.initial_seconds}}', '{{team.team_name}}')">Commencer</button>
-                <button class="stop-button" id="stop-{{ team.team_name }}" style="display: none;" onclick="stopTimer('{{team.team_name}}')">Stop</button>
-                <button class="reset-button" id="reset-{{ team.team_name }}" style="display: none;" onclick="resetTimer('{{ team.initial_minutes }} ', '{{ team.initial_seconds}}', '{{team.team_name}}')">Réinitialiser</button>
-                <button class="restart-button" id="restart-{{ team.team_name }}" onclick="restartTimer('{{ team.team_name }}')" style="display: none;">Reprendre</button>
+                <h3>{{ timer.team_name }}</h3>
+                <p id="timer-{{ timer.id }}">{{ timer.initial_minutes }}:{{ timer.initial_seconds }}</p>
+                <button class="begin-button" id="start-{{ timer.id }}" onclick="startTimer('{{ timer.initial_minutes }} ', '{{ timer.initial_seconds}}', '{{timer.id}}')">Commencer</button>
+                <button class="stop-button" id="stop-{{ timer.id }}" style="display: none;" onclick="stopTimer('{{timer.id}}')">Stop</button>
+                <button class="reset-button" id="reset-{{ timer.id }}" style="display: none;" onclick="resetTimer('{{ timer.initial_minutes }} ', '{{ timer.initial_seconds}}', '{{timer.id}}')">Réinitialiser</button>
+                <button class="restart-button" id="restart-{{ timer.id }}" onclick="restartTimer('{{ timer.id }}')" style="display: none;">Reprendre</button>
             </div>
         {% endfor %}
         <div class="add-team-container">
