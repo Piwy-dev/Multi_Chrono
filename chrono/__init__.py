@@ -23,8 +23,6 @@ def create_app(test_config=None):
 
    with app.app_context():
       db.init_db()
-      tdb.delete_all_timers()
-      tdb.delete_timer_duration()
    
    @app.route('/')
    def home():

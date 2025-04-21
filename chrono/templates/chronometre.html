@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/chrono.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/minuteur.css') }}">
-    <script src="{{ url_for('static', filename='js/minuteur.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/chrono.js') }}" defer></script>
 </head>
 <body>
     <a href="{{ url_for('home') }}" class="back-button">&#8592; Retour</a>
@@ -18,11 +18,11 @@
         {% for chrono in chronos %}
             <div class="team">
                 <h3>{{ chrono.team_name }}</h3>
-                <p id="timer-{{ chrono.id }}">00:00</p>
+                <p id="chrono-{{ chrono.id }}">00:00</p>
                 <button class="begin-button" id="start-{{ chrono.id }}" onclick="startChrono('{{chrono.id}}')">Commencer</button>
-                <button class="stop-button" id="stop-{{ chrono.id }}" style="display: none;" onclick="stopTimer('{{chrono.id}}')">Stop</button>
-                <button class="reset-button" id="reset-{{ chrono.id }}" style="display: none;" onclick="resetTimer('{{chrono.id}}')">Réinitialiser</button>
-                <button class="restart-button" id="restart-{{ chrono.id }}" onclick="restartTimer('{{ chrono.id }}')" style="display: none;">Reprendre</button>
+                <button class="stop-button" id="stop-{{ chrono.id }}" style="display: none;" onclick="stopChrono('{{chrono.id}}')">Stop</button>
+                <button class="reset-button" id="reset-{{ chrono.id }}" style="display: none;" onclick="resetChrono('{{chrono.id}}')">Réinitialiser</button>
+                <button class="restart-button" id="restart-{{ chrono.id }}" onclick="restartChrono('{{ chrono.id }}')" style="display: none;">Reprendre</button>
             </div>
         {% endfor %}
         <div class="add-team-container">
