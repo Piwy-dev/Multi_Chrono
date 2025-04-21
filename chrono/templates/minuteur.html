@@ -32,8 +32,10 @@
                 <button class="restart-button" id="restart-{{ timer.id }}" onclick="restartTimer('{{ timer.id }}')" style="display: none;">Reprendre</button>
             </div>
         {% endfor %}
-        <div class="add-team-container">
-            <a href="/add-team/timer" id="add-team-button">Ajouter une équipe</a>
+        <div class="manage-teams">
+            <a href="/add-team/chrono" id="add-team-button">Ajouter une équipe</a>
+            <a href="/delete-team/chrono" id="delete-team-button">Supprimer une équipe</a>
+            <a href="/delete-all/chrono" id="delete-all-button">Supprimer toutes les équipes</a>
         </div>
     </div>
 </body>
