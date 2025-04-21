@@ -35,7 +35,9 @@
         <div class="manage-teams">
             <a href="/add-team/chrono" id="add-team-button">Ajouter une équipe</a>
             <a href="/delete-team/chrono" id="delete-team-button">Supprimer une équipe</a>
-            <a href="/delete-all/chrono" id="delete-all-button">Supprimer toutes les équipes</a>
+            <form action="/delete-all/timer" method="post" style="display: inline;">
+                <button type="submit" id="delete-all-button">Supprimer toutes les équipes</button>
+            </form>
         </div>
     </div>
 </body>

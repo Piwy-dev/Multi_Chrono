@@ -77,4 +77,34 @@ def create_app(test_config=None):
       elif request.method == 'GET':
          return render_template('add-team.html', functionality='timer')
    
+   """   
+   @app.route('/delete-team/chrono', methods=['POST'])
+   def delete_team_chrono():
+      team_name = request.form.get('team_name')
+      if team_name:
+         cdb.delete_chrono(team_name)
+         return redirect('/chronometre')
+      else:
+         return "Please provide a valid team name.", 400
+      
+   @app.route('/delete-team/timer', methods=['POST'])
+   def delete_team_timer():
+      team_name = request.form.get('team_name')
+      if team_name:
+         tdb.delete_timer(team_name)
+         return redirect('/minuteur')
+      else:
+         return "Please provide a valid team name.", 400
+   """
+      
+   @app.route('/delete-all/chrono', methods=['POST'])
+   def delete_all_chronos():
+      cdb.delete_all_chronos()
+      return redirect('/chronometre')
+   
+   @app.route('/delete-all/timer', methods=['POST'])
+   def delete_all_timers():
+      tdb.delete_all_timers()
+      return redirect('/minuteur')
+   
    return app
