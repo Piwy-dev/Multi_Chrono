@@ -53,9 +53,21 @@ def create_app(test_config=None):
          timers = tdb.get_all_timers()
          return render_template('minuteur.html', minutes=minutes, seconds=seconds, timers=timers)
    
-   @app.route('/add-team', methods=['GET', 'POST'])
-   def add_team():
-      print(request.method)
+   @app.route('/add-team/chrono', methods=['GET', 'POST'])
+   def add_team_chrono():
+      if request.method == 'POST':
+         team_name = request.form.get('team_name')
+         if team_name:
+            print(f"Adding team: {team_name}")
+            cdb.add_chrono(team_name)
+            return redirect('/chronometre')
+         else:
+            return "Please provide a valid team name.", 400
+      elif request.method == 'GET':
+         return render_template('add-team.html', functionality='chrono')
+         
+   @app.route('/add-team/timer', methods=['GET', 'POST'])
+   def add_team_timer():
       if request.method == 'POST':
          team_name = request.form.get('team_name')
          if team_name:
@@ -64,6 +76,7 @@ def create_app(test_config=None):
             return redirect('/minuteur')
          else:
             return "Please provide a valid team name.", 400
-      return render_template('add-team.html')
+      elif request.method == 'GET':
+         return render_template('add-team.html', functionality='timer')
    
    return app

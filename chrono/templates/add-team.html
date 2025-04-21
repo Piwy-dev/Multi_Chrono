@@ -8,14 +8,26 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/add-team.css') }}">
 </head>
 <body>
-    <a href="{{ url_for('minuteur') }}" class="back-button">&#8592; Retour</a>
+    {% if functionality == 'timer' %}
+        <a href="{{ url_for('minuteur') }}" class="back-button">&#8592; Retour</a>
 
-    <form action="/add-team" method="POST"
-        enctype="multipart/form-data">
-        <label for="team_name">Nom de l'équipe:</label>
-        <input type="text" id="team_name" name="team_name" required>
-        
-        <button type="submit">Ajouter</button>
-    </form>
+        <form action="/add-team/timer" method="POST"
+            enctype="multipart/form-data">
+            <label for="team_name">Nom de l'équipe:</label>
+            <input type="text" id="team_name" name="team_name" required>
+            
+            <button type="submit">Ajouter</button>
+        </form>
+    {% elif functionality == 'chrono' %}
+        <a href="{{ url_for('chronometre') }}" class="back-button">&#8592; Retour</a>
+
+        <form action="/add-team/chrono" method="POST"
+            enctype="multipart/form-data">
+            <label for="team_name">Nom de l'équipe:</label>
+            <input type="text" id="team_name" name="team_name" required>
+            
+            <button type="submit">Ajouter</button>
+        </form>
+    {% endif %}
 </body>
 </html>

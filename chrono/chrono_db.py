@@ -19,8 +19,7 @@ def add_chrono(team_name: str):
         team_name (str): The name of the team to add.
     """
     db = database.get_db()
-    db.execute("INSERT INTO chron (team_name) VALUES (?)",
-               (team_name))
+    db.execute("INSERT INTO chrono (team_name) VALUES (?)", (team_name,))
     db.commit()
     
 def delete_all_chronos():
